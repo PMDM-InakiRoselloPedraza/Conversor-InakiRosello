@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LogsConversor";
     private static final double PULGADA_A_CM = 2.54;
+
+    // Activ 4.2 Claves para guardar el estado de los TextView
+    private static final String KEY_RESULTADO = "resultado";
+    private static final String KEY_ERROR = "error";
+    private static final String KEY_ERROR_VISIBLE = "errorVisible";
+
+    private TextView tvResultado;
+    private TextView tvError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +43,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUI();
-        // Activ 3.1 Log del ciclo de vida
         Log.d(TAG, "onCreate");
     }
 
     private void setUI() {
         EditText etValor = findViewById(R.id.et_Valor);
-        TextView tvResultado = findViewById(R.id.tv_Resultado);
-        TextView tvError = findViewById(R.id.tv_Error);
+        tvResultado = findViewById(R.id.tv_Resultado);
+        tvError = findViewById(R.id.tv_Error);
         Button buttonConvertir = findViewById(R.id.button_Convertir);
         RadioGroup rgSentido = findViewById(R.id.rg_Sentido);
 
         rgSentido.setOnCheckedChangeListener((group, checkedId) -> {
-            // Activ 3.2 Log al pulsar un botón (RadioButton) indicando cuál
             RadioButton rb = group.findViewById(checkedId);
             Log.i(TAG, "Botón pulsado: " + rb.getText());
             etValor.setHint(checkedId == R.id.rb_PulgCm
@@ -54,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonConvertir.setOnClickListener(view -> {
-            // Activ 3.2 Log al pulsar un botón indicando cuál
             Log.i(TAG, "Botón pulsado: Convertir");
             try {
                 boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
@@ -85,7 +91,27 @@ public class MainActivity extends AppCompatActivity {
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
     }
 
-    // Activ 3.1 Estados del ciclo de vida de la Activity
+    // Activ 4.2 Guardar el estado de los TextView antes de que la Activity se destruya
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_RESULTADO, tvResultado.getText().toString());
+        outState.putString(KEY_ERROR, tvError.getText().toString());
+        outState.putBoolean(KEY_ERROR_VISIBLE, tvError.getVisibility() == View.VISIBLE);
+        Log.d(TAG, "onSaveInstanceState");
+    }
+
+    // Activ 4.2 Restaurar el estado de los TextView al recrear la Activity
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        tvResultado.setText(savedInstanceState.getString(KEY_RESULTADO, ""));
+        tvError.setText(savedInstanceState.getString(KEY_ERROR, ""));
+        tvError.setVisibility(savedInstanceState.getBoolean(KEY_ERROR_VISIBLE, false)
+                ? View.VISIBLE : View.GONE);
+        Log.d(TAG, "onRestoreInstanceState");
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
