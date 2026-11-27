@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "LogsConversor";
     private static final double PULGADA_A_CM = 2.54;
 
-    // Activ 4.2 Claves para guardar el estado de los TextView
+    // TODO: Activ 4.2 Claves para guardar el estado de los TextView
     private static final String KEY_RESULTADO = "resultado";
     private static final String KEY_ERROR = "error";
     private static final String KEY_ERROR_VISIBLE = "errorVisible";
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
     }
 
-    // Activ 4.2 Guardar el estado de los TextView antes de que la Activity se destruya
+    // TODO: Activ 4.2 Guardar el estado de los TextView antes de que la Activity se destruya
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState");
     }
 
-    // Activ 4.2 Restaurar el estado de los TextView al recrear la Activity
+    // TODO: Activ 4.2 Restaurar el estado de los TextView al recrear la Activity
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
