@@ -21,20 +21,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_Pulgada"
+    <!-- Activ 1.1 RadioGroup para elegir el sentido de la conversión -->
+    <RadioGroup
+        android:id="@+id/rg_Sentido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
+        android:checkedButton="@id/rb_PulgCm"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_Info">
+
+        <RadioButton
+            android:id="@+id/rb_PulgCm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioPulgCm"
+            android:textColor="#0000ff" />
+
+        <RadioButton
+            android:id="@+id/rb_CmPulg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioCmPulg"
+            android:textColor="#0000ff" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/et_Valor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/textViewHintPedir"
+        android:hint="@string/hintPulgadas"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_Info" />
+        app:layout_constraintTop_toBottomOf="@id/rg_Sentido" />
 
     <Button
         android:id="@+id/button_Convertir"
@@ -44,19 +71,19 @@
         android:text="@string/buttonConvertir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_Pulgada" />
+        app:layout_constraintTop_toBottomOf="@id/et_Valor" />
 
-    <EditText
-        android:id="@+id/et_Resultado"
+    <!-- Activ 1.1 El resultado es un TextView (no tiene sentido que sea editable) -->
+    <TextView
+        android:id="@+id/tv_Resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/editTextHintResultado"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
         android:minHeight="48dp"
+        android:gravity="center"
+        android:textColor="#0000ff"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_Convertir" />
