@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
     }
 
+    // TODO: Activ 4.1 Al rotar, Android destruye y recrea la Activity (onDestroy -> onCreate).
+    // El layout se infla de nuevo y los TextView vuelven al valor del XML, así que el
+    // resultado y el error se pierden porque solo estaban guardados en las vistas.
+
     // TODO: Activ 4.2 Guardar el estado de los TextView antes de que la Activity se destruya
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
