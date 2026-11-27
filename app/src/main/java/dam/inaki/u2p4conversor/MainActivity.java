@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUI();
-        // Activ 3.1 Log del ciclo de vida
+        // TODO: Activ 3.1 Log del ciclo de vida
         Log.d(TAG, "onCreate");
     }
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup rgSentido = findViewById(R.id.rg_Sentido);
 
         rgSentido.setOnCheckedChangeListener((group, checkedId) -> {
-            // Activ 3.2 Log al pulsar un botón (RadioButton) indicando cuál
+            // TODO: Activ 3.2 Log al pulsar un botón (RadioButton) indicando cuál
             RadioButton rb = group.findViewById(checkedId);
             Log.i(TAG, "Botón pulsado: " + rb.getText());
             etValor.setHint(checkedId == R.id.rb_PulgCm
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonConvertir.setOnClickListener(view -> {
-            // Activ 3.2 Log al pulsar un botón indicando cuál
+            // TODO: Activ 3.2 Log al pulsar un botón indicando cuál
             Log.i(TAG, "Botón pulsado: Convertir");
             try {
                 boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
     }
 
-    // Activ 3.1 Estados del ciclo de vida de la Activity
+    // TODO: Activ 3.1 Estados del ciclo de vida de la Activity
     @Override
     protected void onStart() {
         super.onStart();
