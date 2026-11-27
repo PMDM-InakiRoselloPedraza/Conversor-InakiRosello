@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Activ 1.1 RadioGroup para elegir el sentido de la conversión -->
+    <!-- TODO: Activ 1.1 RadioGroup para elegir el sentido de la conversión -->
     <RadioGroup
         android:id="@+id/rg_Sentido"
         android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_Valor" />
 
-    <!-- Activ 1.1 El resultado es un TextView (no tiene sentido que sea editable) -->
+    <!-- TODO: Activ 1.1 El resultado es un TextView (no tiene sentido que sea editable) -->
     <TextView
         android:id="@+id/tv_Resultado"
         android:layout_width="wrap_content"

@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
         Button buttonConvertir = findViewById(R.id.button_Convertir);
         RadioGroup rgSentido = findViewById(R.id.rg_Sentido);
 
-        // Activ 1.1 Cambia el hint según el sentido elegido
+        // TODO: Activ 1.1 Cambia el hint según el sentido elegido
         rgSentido.setOnCheckedChangeListener((group, checkedId) ->
                 etValor.setHint(checkedId == R.id.rb_PulgCm
                         ? R.string.hintPulgadas : R.string.hintCentimetros));
 
         buttonConvertir.setOnClickListener(view -> {
             try {
-                // Activ 1.1 Two-way conversion inch <-> cm
+                // TODO: Activ 1.1 Two-way conversion inch <-> cm
                 boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
                 double factor = pulgadasACm ? PULGADA_A_CM : 1 / PULGADA_A_CM;
                 tvResultado.setText(convertir(etValor.getText().toString(), factor));
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Activ 1.1 Metodo genérico: sirve para los dos sentidos usando el factor
-    // Activ 1.2 Resultado formateado con dos decimales
+    // TODO: Activ 1.1 Método genérico: sirve para los dos sentidos usando el factor
+    // TODO: Activ 1.2 Resultado formateado con dos decimales
     private String convertir(String texto, double factor) {
         double resultado = Double.parseDouble(texto.replace(',', '.')) * factor;
         return String.format(Locale.getDefault(), "%.2f", resultado);
