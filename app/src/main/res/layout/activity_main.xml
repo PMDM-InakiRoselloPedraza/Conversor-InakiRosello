@@ -21,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Activ 1.1 RadioGroup para elegir el sentido de la conversión -->
     <RadioGroup
         android:id="@+id/rg_Sentido"
         android:layout_width="wrap_content"
@@ -73,19 +72,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_Valor" />
 
-    <!-- Activ 1.1 El resultado es un TextView (no tiene sentido que sea editable) -->
     <TextView
         android:id="@+id/tv_Resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:minHeight="48dp"
         android:gravity="center"
+        android:minHeight="48dp"
         android:textColor="#0000ff"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_Convertir" />
+
+    <!-- Activ 2.2 TextView de error: debajo del resultado, rojo y oculto por defecto -->
+    <TextView
+        android:id="@+id/tv_Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Resultado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

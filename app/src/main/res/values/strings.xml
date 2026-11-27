@@ -6,4 +6,7 @@
     <string name="radioPulgCm">Pulgadas → cm</string>
     <string name="radioCmPulg">cm → pulgadas</string>
     <string name="buttonConvertir">Convertir</string>
+    <string name="error_vacio">El valor no puede estar vacío</string>
+    <string name="error_minimo">Sólo números &gt;=1</string>
+    <string name="error_formato">El valor introducido no es un número válido</string>
 </resources>
