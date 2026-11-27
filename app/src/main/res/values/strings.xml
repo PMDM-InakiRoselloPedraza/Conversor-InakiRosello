@@ -1,12 +1,40 @@
 <resources>
     <string name="app_name">U2P4Conversor</string>
-    <string name="textViewInfo">Conversor de pulgadas y centímetros</string>
-    <string name="hintPulgadas">Introduce las pulgadas</string>
-    <string name="hintCentimetros">Introduce los centímetros</string>
-    <string name="radioPulgCm">Pulgadas → cm</string>
-    <string name="radioCmPulg">cm → pulgadas</string>
+    <string name="textViewInfo">Conversor de unidades</string>
+    <string name="hintValor">Introduce el valor</string>
     <string name="buttonConvertir">Convertir</string>
+    <string name="resultado_formato">%1$s %2$s</string>
+    <string name="ayuda">Ayuda</string>
+
     <string name="error_vacio">El valor no puede estar vacío</string>
     <string name="error_minimo">Sólo números &gt;=1</string>
     <string name="error_formato">El valor introducido no es un número válido</string>
+
+
+    <string-array name="conversiones">
+        <item>Pulgadas → Centímetros</item>
+        <item>Centímetros → Pulgadas</item>
+        <item>Kilogramos → Libras</item>
+        <item>Libras → Kilogramos</item>
+        <item>Kilómetros → Millas</item>
+        <item>Millas → Kilómetros</item>
+    </string-array>
+    <!-- Unidad de destino de cada conversión (mismo orden que el array anterior) -->
+    <string-array name="unidades_destino">
+        <item>cm</item>
+        <item>in</item>
+        <item>lb</item>
+        <item>kg</item>
+        <item>mi</item>
+        <item>km</item>
+    </string-array>
+
+
+    <string name="help_title">Ayuda</string>
+    <string name="help_text">CÓMO USAR LA APLICACIÓN\n\n1. Elige en la lista la conversión que quieres hacer (por ejemplo, Pulgadas → Centímetros).\n\n2. Escribe el valor en la caja de texto.\n\n3. Pulsa el botón Convertir. El resultado aparece debajo con dos decimales.\n\nMENSAJES DE ERROR\n\n• \"El valor no puede estar vacío\": has pulsado Convertir sin escribir ningún número.\n\n• \"Sólo números >=1\": la aplicación solo convierte números mayores o iguales que 1.\n\n• \"El valor introducido no es un número válido\": el texto escrito no se puede interpretar como un número.\n\nEl mensaje de error aparece en rojo y desaparece cuando la conversión se hace correctamente.</string>
+    <string name="help_volver">Volver</string>
+
+    <!-- Activ 6 Textos de la valoración -->
+    <string name="valora_titulo">Valora la aplicación</string>
+    <string name="valoracion_guardada">Tu valoración: %1$.0f de 5</string>
 </resources>

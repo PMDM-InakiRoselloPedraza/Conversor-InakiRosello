@@ -9,43 +9,44 @@
     android:background="@drawable/meter_background"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/ib_Ayuda"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/ayuda"
+        android:src="@android:drawable/ic_menu_help"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView_Info"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="@string/textViewInfo"
         android:textColor="#0000ff"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ib_Ayuda"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioGroup
-        android:id="@+id/rg_Sentido"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/sp_Conversion"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:checkedButton="@id/rb_PulgCm"
-        android:orientation="horizontal"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:entries="@array/conversiones"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_Info">
-
-        <RadioButton
-            android:id="@+id/rb_PulgCm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radioPulgCm"
-            android:textColor="#0000ff" />
-
-        <RadioButton
-            android:id="@+id/rb_CmPulg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radioCmPulg"
-            android:textColor="#0000ff" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@id/textView_Info" />
 
     <EditText
         android:id="@+id/et_Valor"
@@ -54,13 +55,13 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/hintPulgadas"
+        android:hint="@string/hintValor"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rg_Sentido" />
+        app:layout_constraintTop_toBottomOf="@id/sp_Conversion" />
 
     <Button
         android:id="@+id/button_Convertir"
@@ -86,7 +87,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_Convertir" />
 
-    <!-- Activ 2.2 TextView de error: debajo del resultado, rojo y oculto por defecto -->
     <TextView
         android:id="@+id/tv_Error"
         android:layout_width="wrap_content"
@@ -100,5 +100,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_Resultado" />
+
+    <!-- Activ 6 Valoración: texto + RatingBar de 5 estrellas -->
+    <TextView
+        android:id="@+id/tv_Valoracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/valora_titulo"
+        android:textColor="#0000ff"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Error" />
+
+    <RatingBar
+        android:id="@+id/rating_Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_Valoracion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
