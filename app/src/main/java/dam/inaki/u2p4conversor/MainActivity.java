@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUI();
+        // Activ 3.1 Log del ciclo de vida
+        Log.d(TAG, "onCreate");
     }
 
     private void setUI() {
@@ -42,20 +45,24 @@ public class MainActivity extends AppCompatActivity {
         Button buttonConvertir = findViewById(R.id.button_Convertir);
         RadioGroup rgSentido = findViewById(R.id.rg_Sentido);
 
-        rgSentido.setOnCheckedChangeListener((group, checkedId) ->
-                etValor.setHint(checkedId == R.id.rb_PulgCm
-                        ? R.string.hintPulgadas : R.string.hintCentimetros));
+        rgSentido.setOnCheckedChangeListener((group, checkedId) -> {
+            // Activ 3.2 Log al pulsar un botón (RadioButton) indicando cuál
+            RadioButton rb = group.findViewById(checkedId);
+            Log.i(TAG, "Botón pulsado: " + rb.getText());
+            etValor.setHint(checkedId == R.id.rb_PulgCm
+                    ? R.string.hintPulgadas : R.string.hintCentimetros);
+        });
 
         buttonConvertir.setOnClickListener(view -> {
+            // Activ 3.2 Log al pulsar un botón indicando cuál
+            Log.i(TAG, "Botón pulsado: Convertir");
             try {
                 boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
                 double factor = pulgadasACm ? PULGADA_A_CM : 1 / PULGADA_A_CM;
                 tvResultado.setText(convertir(etValor.getText().toString(), factor));
-                // Activ 2.2 Si todo va bien, el error se oculta
                 tvError.setVisibility(View.GONE);
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
-                // Activ 2.2 Mostrar el mensaje de error en el TextView (visible solo si hay error)
                 tvResultado.setText("");
                 tvError.setText(e.getMessage());
                 tvError.setVisibility(View.VISIBLE);
@@ -63,13 +70,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Activ 2.1 convertir lanza excepciones que captura el try...catch de setUI()
     private String convertir(String texto, double factor) throws Exception {
         texto = texto.trim();
         if (texto.isEmpty()) {
             throw new Exception(getString(R.string.error_vacio));
         }
-        // Evita casos como "." que no son un número (así no hace falta otro try...catch)
         if (!texto.matches("\\d+([.,]\\d*)?|[.,]\\d+")) {
             throw new Exception(getString(R.string.error_formato));
         }
@@ -78,5 +83,42 @@ public class MainActivity extends AppCompatActivity {
             throw new Exception(getString(R.string.error_minimo));
         }
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
+    }
+
+    // Activ 3.1 Estados del ciclo de vida de la Activity
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 }
