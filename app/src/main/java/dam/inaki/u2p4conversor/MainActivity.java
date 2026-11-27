@@ -1,12 +1,13 @@
 package dam.inaki.u2p4conversor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,13 +22,20 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "LogsConversor";
-    private static final double PULGADA_A_CM = 2.54;
 
-    // Activ 4.2 Claves para guardar el estado de los TextView
     private static final String KEY_RESULTADO = "resultado";
     private static final String KEY_ERROR = "error";
     private static final String KEY_ERROR_VISIBLE = "errorVisible";
 
+    // TODO: Activ 5.1 Factor de cada conversión (mismo orden que R.array.conversiones)
+    private static final double[] FACTORES = {
+            2.54, 1 / 2.54,             // pulgadas <-> cm
+            2.20462, 1 / 2.20462,       // kg <-> libras
+            0.621371, 1 / 0.621371      // km <-> millas
+    };
+
+    private Spinner spConversion;
+    private EditText etValor;
     private TextView tvResultado;
     private TextView tvError;
 
@@ -47,25 +55,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUI() {
-        EditText etValor = findViewById(R.id.et_Valor);
+        spConversion = findViewById(R.id.sp_Conversion);
+        etValor = findViewById(R.id.et_Valor);
         tvResultado = findViewById(R.id.tv_Resultado);
         tvError = findViewById(R.id.tv_Error);
         Button buttonConvertir = findViewById(R.id.button_Convertir);
-        RadioGroup rgSentido = findViewById(R.id.rg_Sentido);
-
-        rgSentido.setOnCheckedChangeListener((group, checkedId) -> {
-            RadioButton rb = group.findViewById(checkedId);
-            Log.i(TAG, "Botón pulsado: " + rb.getText());
-            etValor.setHint(checkedId == R.id.rb_PulgCm
-                    ? R.string.hintPulgadas : R.string.hintCentimetros);
-        });
+        ImageButton ibAyuda = findViewById(R.id.ib_Ayuda);
 
         buttonConvertir.setOnClickListener(view -> {
             Log.i(TAG, "Botón pulsado: Convertir");
             try {
-                boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
-                double factor = pulgadasACm ? PULGADA_A_CM : 1 / PULGADA_A_CM;
-                tvResultado.setText(convertir(etValor.getText().toString(), factor));
+                int posicion = spConversion.getSelectedItemPosition();
+                String valor = convertir(etValor.getText().toString(), FACTORES[posicion]);
+                String unidad = getResources().getStringArray(R.array.unidades_destino)[posicion];
+                tvResultado.setText(getString(R.string.resultado_formato, valor, unidad));
                 tvError.setVisibility(View.GONE);
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
@@ -74,8 +77,16 @@ public class MainActivity extends AppCompatActivity {
                 tvError.setVisibility(View.VISIBLE);
             }
         });
+
+        // TODO: Activ 5.2 Abre la Activity de ayuda con un Intent explícito
+        ibAyuda.setOnClickListener(view -> {
+            Log.i(TAG, "Botón pulsado: Ayuda");
+            startActivity(new Intent(this, HelpActivity.class));
+        });
     }
 
+    // TODO: Activ 5.1 Un único método de conversión reutilizable (código limpio):
+    //  recibe el factor de la conversión elegida y lanza las mismas excepciones de la Activ 2
     private String convertir(String texto, double factor) throws Exception {
         texto = texto.trim();
         if (texto.isEmpty()) {
@@ -91,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         return String.format(Locale.getDefault(), "%.2f", valor * factor);
     }
 
-    // Activ 4.2 Guardar el estado de los TextView antes de que la Activity se destruya
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -101,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState");
     }
 
-    // Activ 4.2 Restaurar el estado de los TextView al recrear la Activity
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
