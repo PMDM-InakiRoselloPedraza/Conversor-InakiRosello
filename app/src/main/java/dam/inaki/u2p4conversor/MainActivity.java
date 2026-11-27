@@ -1,4 +1,4 @@
-package dam.empar.u2p4conversor;
+package dam.inaki.u2p4conversor;
 
 import android.os.Bundle;
 import android.util.Log;
