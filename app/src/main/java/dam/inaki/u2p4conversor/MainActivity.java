@@ -1,4 +1,4 @@
-package dam.inaki.u2p4conversor;
+package dam.empar.u2p4conversor;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 boolean pulgadasACm = rgSentido.getCheckedRadioButtonId() == R.id.rb_PulgCm;
                 double factor = pulgadasACm ? PULGADA_A_CM : 1 / PULGADA_A_CM;
                 tvResultado.setText(convertir(etValor.getText().toString(), factor));
-                // Activ 2.2 Si todo va bien, el error se oculta
+                // TODO: Activ 2.2 Si todo va bien, el error se oculta
                 tvError.setVisibility(View.GONE);
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
-                // Activ 2.2 Mostrar el mensaje de error en el TextView (visible solo si hay error)
+                // TODO: Activ 2.2 Mostrar el mensaje de error en el TextView (visible solo si hay error)
                 tvResultado.setText("");
                 tvError.setText(e.getMessage());
                 tvError.setVisibility(View.VISIBLE);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Activ 2.1 convertir lanza excepciones que captura el try...catch de setUI()
+    // TODO: Activ 2.1 convertir lanza excepciones que captura el try...catch de setUI()
     private String convertir(String texto, double factor) throws Exception {
         texto = texto.trim();
         if (texto.isEmpty()) {

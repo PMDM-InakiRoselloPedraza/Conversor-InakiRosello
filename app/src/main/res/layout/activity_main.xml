@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_Convertir" />
 
-    <!-- Activ 2.2 TextView de error: debajo del resultado, rojo y oculto por defecto -->
+    <!-- TODO: Activ 2.2 TextView de error: debajo del resultado, rojo y oculto por defecto -->
     <TextView
         android:id="@+id/tv_Error"
         android:layout_width="wrap_content"
