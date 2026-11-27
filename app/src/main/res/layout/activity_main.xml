@@ -101,7 +101,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_Resultado" />
 
-    <!-- Activ 6 Valoración: texto + RatingBar de 5 estrellas -->
+    <!-- TODO: Activ 6 Valoración: texto + RatingBar de 5 estrellas -->
     <TextView
         android:id="@+id/tv_Valoracion"
         android:layout_width="wrap_content"

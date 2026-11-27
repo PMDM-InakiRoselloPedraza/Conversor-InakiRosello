@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_ERROR = "error";
     private static final String KEY_ERROR_VISIBLE = "errorVisible";
 
-    // Activ 6 Preferencias donde se guarda la valoración (0 = aún sin valorar)
+    // TODO: Activ 6 Preferencias donde se guarda la valoración (0 = aún sin valorar)
     private static final String PREFS = "PrefsConversor";
     private static final String KEY_VALORACION = "valoracion";
 
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onStart");
     }
 
-    // Activ 6 Al mostrarse la Activity: si ya hay valoración guardada, se muestra y se bloquea;
+    // TODO: Activ 6 Al mostrarse la Activity: si ya hay valoración guardada, se muestra y se bloquea;
     //  si no, el usuario puede valorar (y cambiarla) mientras la Activity siga en primer plano.
     @Override
     protected void onResume() {
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onResume");
     }
 
-    // Activ 6 Al perder el primer plano se guarda la valoración de forma persistente.
+    // TODO: Activ 6 Al perder el primer plano se guarda la valoración de forma persistente.
     //  onPause() es el único callback que se garantiza antes de que el proceso pueda ser eliminado.
     @Override
     protected void onPause() {

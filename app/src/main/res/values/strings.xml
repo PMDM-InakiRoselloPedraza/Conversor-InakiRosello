@@ -34,7 +34,7 @@
     <string name="help_text">CÓMO USAR LA APLICACIÓN\n\n1. Elige en la lista la conversión que quieres hacer (por ejemplo, Pulgadas → Centímetros).\n\n2. Escribe el valor en la caja de texto.\n\n3. Pulsa el botón Convertir. El resultado aparece debajo con dos decimales.\n\nMENSAJES DE ERROR\n\n• \"El valor no puede estar vacío\": has pulsado Convertir sin escribir ningún número.\n\n• \"Sólo números >=1\": la aplicación solo convierte números mayores o iguales que 1.\n\n• \"El valor introducido no es un número válido\": el texto escrito no se puede interpretar como un número.\n\nEl mensaje de error aparece en rojo y desaparece cuando la conversión se hace correctamente.</string>
     <string name="help_volver">Volver</string>
 
-    <!-- Activ 6 Textos de la valoración -->
+    <!-- TODO: Activ 6 Textos de la valoración -->
     <string name="valora_titulo">Valora la aplicación</string>
     <string name="valoracion_guardada">Tu valoración: %1$.0f de 5</string>
 </resources>
